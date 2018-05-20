@@ -1,0 +1,439 @@
+﻿@model SleekBill.Data.invoice
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="https://fonts.googleapis.com/css?family=Gudea" rel="stylesheet">
+    <link href="~/Content/Main/Main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/jquery.jqGrid.min.js"></script>
+    <script src="~/Scripts/Main.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#fatxtpodate').datepicker({
+                showOn: 'button'
+            });
+
+            $('#txtissuedate').datepicker();
+            $('#txtduedate').datepicker();
+        });
+    </script>
+
+    <title>New Invoice</title>
+</head>
+<body>
+    <section id="container">
+
+        <div id="divnewclient" style="display:none">
+            <div>
+            <table>
+                <tr>
+                    <td>
+                        <lable>Client Name</lable>
+                        <input type="text" id="txtaddclient" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>Contact Name</lable>
+                        <input type="text" id="txtaddcontactname" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>Phone</lable>
+                        <input type="text" id="txtaddphone" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>Email</lable>
+                        <input type="text" id="txtaddemail" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>GSTIN</lable>
+                        <input type="text" id="txtaddgstin" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>TIN</lable>
+                        <input type="text" id="txtaddtin" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>PAN</lable>
+                        <input type="text" id="txtaddpan" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>VAT No</lable>
+                        <input type="text" id="txtaddvatno" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>Billing Address</lable>
+                        <input type="text" id="txtaddbillingaddress" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>City</lable>
+                        <select>
+                            <option></option>
+                            <option>+ Add New</option>
+                        </select>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>State</lable>
+                        <select>
+                            <option></option>
+                            <option>+ Add New</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>Pin Code</lable>
+                        <input type="text" id="txtaddpincode" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>Country</lable>
+                        <input type="text" id="txtaddcountry" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>Private Client Details</lable>
+                        <input type="text" id="txtaddprivateclientdetails" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>Other Client Details</lable>
+                        <input type="text" id="txtaddotherclientdetails" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>SEZ</lable>
+                        <input type="checkbox" id="chkaddsez" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lable>Ship to a different Address</lable>
+                        <input type="checkbox" id="chkadddifferentaddress" />
+                    </td>
+                </tr>
+                </table>
+                </div>
+            <div id="divalternateshippingaddress">
+                <table>
+                    <tr>
+                        <td>
+                            <lable>Shipping Address</lable>
+                            <textarea id="txtaddaltshippingaddress" cols="20" rows="5" style="resize:none"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <lable>City</lable>
+                            <input type="text" id="txtaddaltcity" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <lable>State</lable>
+                            <input type="text" id="txtaddaltstate" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <lable>Pin Code</lable>
+                            <input type="text" id="txtaddaltpincode" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <lable>Country</lable>
+                            <input type="text" id="txtaddaltcountry" />
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td>
+
+                            <input type="button" id="btnaddclient" value="+ Save" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+        
+        <table id="uppersection">            
+            <tr>
+                <td>
+                    <h4>Document Data</h4>
+                </td>
+            </tr>            
+            <tr>
+                <td><label>Client</label></td>
+                <td>
+                    <select id="selectclient">
+                        <option></option>
+                        <option value="addnewclient">+ Add New</option>
+                        <option>A & P Group Ltd. | Kanpur</option>
+                        <option>Anand Dresses | Mumbai</option>
+                        <option>Baster SRL | Sibley</option>
+                        <option>IBM | Bangalore</option>
+                        <option>J & E Hall International | Appleton</option>
+                        <option>Lore Garments | Kanpur</option>
+                        <option>Pune Collections | Pune</option>
+                        <option>SibiPeople.ro | Sibley</option>
+                        <option>Transformers Ltd. | Abbyville</option>
+                    </select>
+                    <i class="fa fa-edit" style="color:cornflowerblue"></i>
+                </td>
+                <td>
+                    <lable>Document Number</lable>                    
+                </td>
+                <td>
+                    <input type="text" id="txtdocumentnumber" />
+                    <i class="fa fa-info-circle" style="color:cornflowerblue"></i>
+                </td>
+                <td>
+                    <label>Issue Date</label>
+                </td>
+                <td>
+                    <input type="text" id="txtissuedate"/>
+                    <i class="fa fa-calendar-plus-o" style="color:cornflowerblue"></i>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" height="70px" rowspan="2">
+
+                </td>
+                
+                <td>
+                    <label for="txtpoboxnumber">P.O. Number</label>
+                </td>
+                <td>
+                    <input type="text" id="txtpoboxnumber" />
+                    <i class="fa fa-info-circle" style="color:cornflowerblue"></i>
+                </td>
+                <td>
+                    <label for="">Payment Terms</label>
+                </td>
+                <td>
+                    <select id="selectpaymentterms">
+                        <option>Net 7</option>
+                        <option>Net 10</option>
+                        <option>Net 15</option>
+                        <option>Net 30</option>
+                        <option>Net 45</option>
+                        <option>Net 60</option>
+                        <option>Net 90</option>
+                        <option>Due On Receipt</option>
+                        <option>Due On The Specified Date</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>P.O. Date</label>
+                </td>
+                <td>
+                    <input type="text" id="txtpodate" />
+
+                    <button type="submit" id="fatxtpodate"/>
+                        <i class="fa fa-calendar-plus-o"  style="color:cornflowerblue"></i>
+                    </button>
+                    
+                </td>
+                <td>
+                    <label>Due Date</label>
+                </td>
+                <td>
+                    <input type="text" id="txtduedate" />
+                    <i class="fa fa-calendar-plus-o" style="color:cornflowerblue"></i>
+                </td>
+            </tr>
+        </table>        
+        <div id="middlesection">
+            <table id="tblmiddlesection">
+                <tr>
+                    <td class="middlesectionlables">
+                        <label>Product </label>
+                        <span>
+                            <i class="fa fa-info-circle" style="color:cornflowerblue"></i>
+                        </span>
+                    </td>
+                    <td class="middlesectionlables">
+                        <label>Description</label>
+                    </td>
+                    <td class="middlesectionlables">
+                        <label>UoM</label>
+                    </td>
+                    <td class="middlesectionlables">
+                        <lable>QTY</lable>
+                    </td>
+                    <td class="middlesectionlables">
+                        <label>Unit Price</label>
+                    </td>
+                    <td class="middlesectionlables">
+                        <label>Discount (%)</label>
+                    </td>
+                    <td class="middlesectionlables">
+                        <label>Tax</label>
+                    </td>
+                    <td class="middlesectionlables"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <select>
+                            <option>Add New</option>
+                            <option>A4Tech HS-800 Headphones</option>
+                            <option>HTech HS-800 Headphones</option>
+                            <option>Asus MeMO Pad Tablet</option>
+                            <option>Benq, G2020HDA Screen</option>
+                            <option>Genius GM Optical Mouse</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" id="txtdescription" />
+                    </td>
+                    <td>
+                        <select>
+                            <option></option>
+                            <option>Boxes</option>
+                            <option>CFT</option>
+                            <option>Centimeters</option>
+                            <option>Cubic Meters</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" id="txtqty" />
+                    </td>
+                    <td>
+                        <input type="text" id="txtunitprice" />
+                    </td>
+                    <td>
+                        <input type="text" id="txtdiscount" />
+                    </td>
+                    <td>
+                        <select>
+                            <option>Add New</option>
+                            <option>None</option>
+                            <option>GST Rate 3%</option>
+                            <option>GST Rate 5%</option>
+                            <option>GST Rate 12%</option>
+                            <option>GST Rate 18%</option>
+                            <option>GST Rate 28%</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="submit" value="+ADD" id="btnadd" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="productinfo">
+            <table id="tbljqgridproductinfo"></table>
+        </div>
+
+        <table>
+            <tr>
+                <td>
+                    <input type="checkbox" id="chkdiscountonall" />Discount on All
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="chkaddshippingandpackingcost" />Add Shipping and Packaging costs
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="chksubjecttoreversecharges" />Subject to Reverse Charges
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" id="btnmoreoptions" value="+ More Options"/>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    <input type="checkbox" id="chkaddpayment" />Add Payment
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" id="chkgetpaidonline" />Get Paid Online (PayPal)
+                </td>
+                <td>
+                    <label>TOTAL</label>
+                    <label>$0.00</label>
+                </td>
+            </tr>
+        </table>
+
+    </section>
+    <script>
+        $(function () {
+            $('#tbljqgridproductinfo').jqGrid({
+                colNames: ["No.","Product/Service","HSN/SAC","Description","UoM","QTY","Unit Price","Value","Discount","CGST","SGST","IGST"],
+                colModel: [
+                    { name: "No." },
+                    { name: "Product/Service", width:380},
+                    { name: "HSN/SAC", width: 370 },
+                    { name: "Description", width:370 },
+                    { name: "UoM" },
+                    { name: "QTY" },
+                    { name: "Unit Price" },
+                    { name: "Value" },
+                    { name: "Discount" },
+                    { name: "CGST" },
+                    { name: "SGST" },
+                    { name: "IGST" }
+                ],
+                pager: "#pager",
+                rowNum:'5',
+                width: '1310',                
+                gridview: true
+            });
+        });
+    </script>
+</body>
+</html>

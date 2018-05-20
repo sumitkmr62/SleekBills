@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SleekBillModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="clientid" />
+          </Key>
+          <Property Name="clientid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="contact_name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="gstin" Type="varchar" MaxLength="50" />
+          <Property Name="tin" Type="varchar" MaxLength="50" />
+          <Property Name="pan" Type="varchar" MaxLength="20" />
+          <Property Name="vatno" Type="varchar" MaxLength="50" />
+          <Property Name="billing_address" Type="varchar" MaxLength="500" />
+          <Property Name="city" Type="varchar" MaxLength="100" />
+          <Property Name="state" Type="varchar" MaxLength="100" />
+          <Property Name="pincode" Type="varchar" MaxLength="20" />
+          <Property Name="country" Type="varchar" MaxLength="50" />
+          <Property Name="private_client_details" Type="varchar" MaxLength="200" />
+          <Property Name="other_client_details" Type="varchar" MaxLength="100" />
+          <Property Name="alt_shipping_address" Type="varchar" MaxLength="500" />
+          <Property Name="alt_city" Type="varchar" MaxLength="100" />
+          <Property Name="alt_state" Type="varchar" MaxLength="100" />
+          <Property Name="alt_pincode" Type="varchar" MaxLength="100" />
+          <Property Name="alt_country" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="invoice">
+          <Key>
+            <PropertyRef Name="invoiceid" />
+          </Key>
+          <Property Name="invoiceid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="issuedate" Type="datetime" />
+          <Property Name="purchaseordernumber" Type="int" />
+          <Property Name="paymentterms" Type="varchar" MaxLength="200" />
+          <Property Name="purchaseorderdate" Type="datetime" />
+          <Property Name="duedate" Type="datetime" />
+          <Property Name="placeofsupply" Type="varchar" MaxLength="200" />
+          <Property Name="product" Type="varchar" MaxLength="300" />
+          <Property Name="description" Type="varchar" MaxLength="500" />
+          <Property Name="uom" Type="varchar" MaxLength="100" />
+          <Property Name="qty" Type="int" />
+          <Property Name="unitprice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="discount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="tax" Type="varchar" MaxLength="100" />
+          <Property Name="paymenttype" Type="varchar" MaxLength="100" />
+          <Property Name="amountpaid" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="notes" Type="varchar" MaxLength="500" />
+          <Property Name="noteforclient" Type="varchar" MaxLength="500" />
+          <Property Name="privatenote" Type="varchar" MaxLength="500" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="SleekBillModelStoreContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="invoice" EntityType="Self.invoice" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SleekBillModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="invoice">
+          <Key>
+            <PropertyRef Name="invoiceid" />
+          </Key>
+          <Property Name="invoiceid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="issuedate" Type="DateTime" Precision="3" />
+          <Property Name="purchaseordernumber" Type="Int32" />
+          <Property Name="paymentterms" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="purchaseorderdate" Type="DateTime" Precision="3" />
+          <Property Name="duedate" Type="DateTime" Precision="3" />
+          <Property Name="placeofsupply" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="product" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="uom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="unitprice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="discount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="tax" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="paymenttype" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="amountpaid" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="notes" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="noteforclient" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="privatenote" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="SleekBillEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="invoices" EntityType="Self.invoice" />
+          <EntitySet Name="Clients" EntityType="SleekBillModel.Client" />
+        </EntityContainer>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="clientid" />
+          </Key>
+          <Property Name="clientid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client_name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="contact_name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gstin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="vatno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="billing_address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pincode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="private_client_details" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="other_client_details" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="alt_shipping_address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="alt_city" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="alt_state" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="alt_pincode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="alt_country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SleekBillModelStoreContainer" CdmEntityContainer="SleekBillEntities">
+          <EntitySetMapping Name="invoices">
+            <EntityTypeMapping TypeName="SleekBillModel.invoice">
+              <MappingFragment StoreEntitySet="invoice">
+                <ScalarProperty Name="invoiceid" ColumnName="invoiceid" />
+                <ScalarProperty Name="client" ColumnName="client" />
+                <ScalarProperty Name="issuedate" ColumnName="issuedate" />
+                <ScalarProperty Name="purchaseordernumber" ColumnName="purchaseordernumber" />
+                <ScalarProperty Name="paymentterms" ColumnName="paymentterms" />
+                <ScalarProperty Name="purchaseorderdate" ColumnName="purchaseorderdate" />
+                <ScalarProperty Name="duedate" ColumnName="duedate" />
+                <ScalarProperty Name="placeofsupply" ColumnName="placeofsupply" />
+                <ScalarProperty Name="product" ColumnName="product" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="uom" ColumnName="uom" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="tax" ColumnName="tax" />
+                <ScalarProperty Name="paymenttype" ColumnName="paymenttype" />
+                <ScalarProperty Name="amountpaid" ColumnName="amountpaid" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="noteforclient" ColumnName="noteforclient" />
+                <ScalarProperty Name="privatenote" ColumnName="privatenote" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="SleekBillModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="alt_country" ColumnName="alt_country" />
+                <ScalarProperty Name="alt_pincode" ColumnName="alt_pincode" />
+                <ScalarProperty Name="alt_state" ColumnName="alt_state" />
+                <ScalarProperty Name="alt_city" ColumnName="alt_city" />
+                <ScalarProperty Name="alt_shipping_address" ColumnName="alt_shipping_address" />
+                <ScalarProperty Name="other_client_details" ColumnName="other_client_details" />
+                <ScalarProperty Name="private_client_details" ColumnName="private_client_details" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="pincode" ColumnName="pincode" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="billing_address" ColumnName="billing_address" />
+                <ScalarProperty Name="vatno" ColumnName="vatno" />
+                <ScalarProperty Name="pan" ColumnName="pan" />
+                <ScalarProperty Name="tin" ColumnName="tin" />
+                <ScalarProperty Name="gstin" ColumnName="gstin" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="contact_name" ColumnName="contact_name" />
+                <ScalarProperty Name="client_name" ColumnName="client_name" />
+                <ScalarProperty Name="clientid" ColumnName="clientid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
